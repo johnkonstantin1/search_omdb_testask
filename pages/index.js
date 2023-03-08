@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "../public/styles.module.css";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -22,14 +23,16 @@ export default function Home() {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
         />
-        <button type="submit" className='button-submit'>Search</button>
+        <button type="submit" className="button-submit">
+          Search
+        </button>
       </form>
-      <div className='movie--list'>
+      <div className="movie--list">
         {movies.map((movie) => (
-          <div key={movie.imdbID} className='movie--item'>
+          <div key={movie.imdbID} className="movie--item">
             <h1>{movie.Title}</h1>
             <p>Year:{movie.Year}</p>
-            <img src={movie.Poster}></img>
+            <img className="movie-poster" src={movie.Poster}></img>
           </div>
         ))}
       </div>
