@@ -1,4 +1,4 @@
-.movie-list {
+.movie_list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -6,13 +6,13 @@
     align-self: center;
 }
     
-.movie-item {
+.movie_item {
     width: 300px;
     margin-bottom: 20px;
     text-align: center;
 }
     
-.movie-poster {
+.movie_poster {
     max-width: 100%;
     height: auto;
 }
