@@ -5,6 +5,7 @@ import Head from "next/head";
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
+  const [showMore, setShowMore] = useState(false);
 
   const handleSearch = async (event) => {
     event.preventDefault();
@@ -16,7 +17,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div  className="bg-gray-700 text-white">
       <Head>
         <link rel="stylesheet" href="/styles.css"></link>
       </Head>
@@ -38,16 +39,57 @@ export default function Home() {
             Search
           </button>
         </form>
-        <div className="flex flex-nowrap overflow-x-auto whitespace-no-wrap max-w-screen-lg mx-auto">
-          {movies.map((movie) => (
-            <div key={movie.imdbID} className="movie_item">
-              <h1>{movie.Title}</h1>
-              <p>Year:{movie.Year}</p>
-              <img className="movie_poster" src={movie.Poster}></img>
+        <div className="flex flex-wrap overflow-x-auto whitespace-no-wrap max-w-screen-lg mx-auto">
+          {movies.slice(0, 2).map((movie) => (
+            <div
+              key={movie.imdbID}
+              className="inline-block w-full lg:w-1/2 h-96 m-4 p-4 border border-gray-300 box-border"
+            >
+              <div className="flex flex-col h-full">
+                <img
+                  className="movie_poster w-full h-full object-cover mb-4"
+                  src={movie.Poster}
+                  alt={movie.Title}
+                />
+                <div className="flex justify-between">
+                  <h1 className="text-lg font-bold">{movie.Title}</h1>
+                  <p className="text-lg">{movie.Year}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
+        {movies.slice(2).length > 0 && (
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded mt-4 mx-auto block"
+            onClick={() => setShowMore(!showMore)}
+          >
+            {showMore ? "Скрыть" : "Показать еще"}
+          </button>
+        )}
+        {showMore && (
+          <div className="flex flex-wrap overflow-x-auto whitespace-no-wrap max-w-screen-lg mx-auto">
+            {movies.slice(2).map((movie) => (
+              <div
+                key={movie.imdbID}
+                className="inline-block w-full lg:w-1/2 h-96 m-4 p-4 border border-gray-300 box-border"
+              >
+                <div className="flex flex-col h-full">
+                  <img
+                    className="movie_poster w-full h-full object-cover mb-4"
+                    src={movie.Poster}
+                    alt={movie.Title}
+                  />
+                  <div className="flex justify-between">
+                    <h1 className="text-lg font-bold">{movie.Title}</h1>
+                    <p className="text-lg">{movie.Year}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
