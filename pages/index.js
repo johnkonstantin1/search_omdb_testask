@@ -17,20 +17,21 @@ export default function Home() {
   };
 
   return (
-    <div  className="bg-gray-700 text-white">
+    <div className="bg-sky-900 text-white">
       <Head>
         <link rel="stylesheet" href="/styles.css"></link>
       </Head>
-      <div>
+      <div className="bg-sky-900 ">
         <form
           onSubmit={handleSearch}
           className="flex items-center justify-center"
         >
           <input
             type="text"
+            id="searchInput"
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
-            className="px-4 py-2 border border-gray-400 rounded-lg w-64"
+            className="px-4 py-2 border border-gray-400 rounded-lg w-64 text-black "
           />
           <button
             type="submit"
